@@ -32,7 +32,7 @@ int main(){
 					for(int j = i; j < i+4;j++){
 						if(dataBits[j] == '1') sum++;
 					}
-					if(sum % 2 == 0) VRC[i] = '0';
+					if(sum % 2 == 0) VRC[temp] = '0';
 					else VRC[temp] = '1'; 
 					temp++;
 				}
