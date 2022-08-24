@@ -1,0 +1,7 @@
+V=S$
+S=aAS
+S=#
+A=ba
+A=SB
+B=cA
+B=S
