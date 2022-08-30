@@ -93,7 +93,7 @@ void gen_hcode(char data[], int parity, int size)
     }
     for (int i = 0; i < r; i++)
     {
-        int t = pow(2, r);
+        int t = pow(2, i);
         result[t - 1] = parity_bits[i];
         receieved_msg[t - 1] = parity_bits[i];
     }
