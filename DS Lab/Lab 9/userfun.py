@@ -101,7 +101,7 @@ for i in range(len(test_data)):
         predicted_outcomes.append(0)
 
 
-print("The predicted outcomes from the minimum distance classifier algorithm is: ")
+print("The predicted outcomes from the K Means algorithm is: ")
 print(predicted_outcomes)
 
 accuracy2 = 0
@@ -112,4 +112,4 @@ for i in range(len(test_outcomes)):
 
 accuracy2 /= len(test_outcomes)
 
-print("The Accuracy of the Minimum Distance Classifier Model is " + str(accuracy2))
+print("The Accuracy of the K Means Model is " + str(accuracy2))
