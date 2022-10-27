@@ -1,0 +1,65 @@
+Intermediate code generation for boolean expressions by using short circuit evaluation.
+
+Usually, boolean expression E can occur in conditional statements like If, While, Switch etc.
+
+for ex: if(E) or while(E) etc.
+Here E can be E1 < E2 or E1 <= E2 or E1 > E2 or E1 >= E2 or E1 && E2 or E1 || E2. (6 operators)
+
+The E1 and E2 can be variables or boolean expressions containing the same above 6 operators.
+
+We need to generate the intermediate code for evaluating that expression E and obtain 0 or 1 as the result and save it in T. (0 means false, 1 means true)
+
+Consider the operator precedence from highest to lowest in the following order
+<, <=, >, >=, &&, ||.
+
+Some examples and their Intermediate code to be generated
+
+Ex1: E = a < b || c < d is equivalent to (a < b) || (c < d) 
+
+If a < b goto L1
+If c < d goto L1
+T=0
+goto L2
+L1: T = 1
+L2: next code
+
+Ex2: E = a < b || c < d && e < f is equivalent to (a < b) || ((c < d) && (e < f)) 
+
+If a < b goto L3
+If c < d goto L1
+goto L2
+L1: If e < f goto L3
+L2: T = 0
+goto L4
+L3: T = 1
+L4: next code
+
+Ex3: E = a < b && c < d || e < f is equivalent to ((a < b) && (c < d)) || (e < f) 
+
+If a < b goto L1
+goto L2
+L1: If c < d goto L3
+L2: If e < f goto L4
+T = 0
+goto L4
+L3: T = 1
+L4: next code
+
+Ex4: E = a < b
+
+If a < b goto L1
+T=0
+goto L2
+L1: T = 1
+L2: next code
+
+Ex5: E = a < b < c is equivalent to (a < b) && (b < c)
+
+If a < b goto L1
+goto L2
+L1: if b < c goto L3
+L2: T=0
+goto L4
+L3: T = 1
+L4: next code
+
