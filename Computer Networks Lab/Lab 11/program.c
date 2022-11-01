@@ -75,7 +75,7 @@ int main()
     do
     {
         flag = false;
-        for (int k = 1; k < n; k++)
+        for (int k = 0; k < n; k++)
         {
             for (int i = 0; i < n; i++)
             {
@@ -92,24 +92,24 @@ int main()
                     }
                 }
             }
-            // printf("ITERATION %d of the Algorithm\n", k);
-            // for (int i = 0; i < n; i++)
-            // {
-            //     printf("Routing Table for Node %d is \n", i + 1);
-            //     printf("Destination\tNext Hop\tDistance\n");
-            //     for (int j = 0; j < n; j++)
-            //     {
-            //         printf("%d\t\t", routing_table[i][j].dest, routing_table[i][j].dist);
-            //         if (routing_table[i][j].next_hop != -1)
-            //             printf("%d\t\t", routing_table[i][j].next_hop);
-            //         else
-            //             printf("--\t\t");
-            //         if (routing_table[i][j].dist != -1)
-            //             printf("%d\n", routing_table[i][j].dist);
-            //         else
-            //             printf("INF\n");
-            //     }
-            // }
+            printf("ITERATION %d of the Algorithm\n", k);
+            for (int i = 0; i < n; i++)
+            {
+                printf("Routing Table for Node %d is \n", i + 1);
+                printf("Destination\tNext Hop\tDistance\n");
+                for (int j = 0; j < n; j++)
+                {
+                    printf("%d\t\t", routing_table[i][j].dest, routing_table[i][j].dist);
+                    if (routing_table[i][j].next_hop != -1)
+                        printf("%d\t\t", routing_table[i][j].next_hop);
+                    else
+                        printf("--\t\t");
+                    if (routing_table[i][j].dist != -1)
+                        printf("%d\n", routing_table[i][j].dist);
+                    else
+                        printf("INF\n");
+                }
+            }
         }
     } while (flag == true);
     printf("FINAL ROUTING TABLE \n");
