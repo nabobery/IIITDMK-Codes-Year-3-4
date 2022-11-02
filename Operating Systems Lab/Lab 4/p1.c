@@ -6,7 +6,7 @@
 
 typedef struct
 {
-    int processId, arrivalTime, burstTime, completionTime, waitingTime, turnAroundTime;
+    int processId, arrivalTime, burstTime, completionTime, waitingTime, turnAroundTime, responseTime;
 } process;
 
 int compare(const void *a, const void *b)
@@ -32,6 +32,7 @@ int main()
     printf("Please enter the number of Processes: \n");
     scanf("%d", &numberOfProcesses);
     process processes[numberOfProcesses];
+    bool visited[numberOfProcesses];
     char choice;
     // printf("(a)All arriving at Time 0\n(b)All arrive at different time\nPlease Enter your choice: \n");
     // scanf(" %c", &choice);
@@ -41,6 +42,7 @@ int main()
         printf("Please Enter the process id, arrival time and burst time of the Process %d: \n", i + 1);
         scanf(" %d %d %d", &processes[i].processId, &processes[i].arrivalTime, &processes[i].burstTime);
         tempBurstTime[i] = processes[i].burstTime;
+        visited[i] = false;
     }
     printf("Please enter the Time Quantum: \n");
     scanf("%d", &timeQuantum);
@@ -64,6 +66,11 @@ int main()
         }
         while (front < rear)
         {
+            if (visited[index[front]] == false)
+            {
+                processes[index[front]].responseTime = timer - processes[index[front]].arrivalTime;
+                visited[index[front]] = true;
+            }
             if (readyQueue[front].burstTime <= timeQuantum)
             {
                 for (timer += readyQueue[front].burstTime; arrived < numberOfProcesses; arrived++)
@@ -78,6 +85,7 @@ int main()
                         break;
                 }
                 processes[index[front]].completionTime = timer;
+                printf("%d    %d\n", index[front], timer);
                 completed++;
             }
             else
@@ -95,6 +103,7 @@ int main()
                 }
                 readyQueue[front].burstTime -= timeQuantum;
                 readyQueue[rear] = readyQueue[front];
+                index[rear] = index[front];
                 rear++;
             }
             front++;
@@ -128,10 +137,10 @@ int main()
     averageTurnAroundTime /= numberOfProcesses;
     averageWaitingTime /= numberOfProcesses;
     qsort((void *)processes, numberOfProcesses, sizeof(processes[0]), comparepid);
-    printf("Process ID \t Arrival Time \t Burst Time \t Completion Time \t Waiting Time \t Turn Around Time \n");
+    printf("Process ID \t Arrival Time \t Burst Time \t Completion Time \t Waiting Time \t Turn Around Time \t Response Time \n");
     for (int i = 0; i < numberOfProcesses; i++)
     {
-        printf("%d \t %d \t %d \t %d \t %d \t %d \n", processes[i].processId, processes[i].arrivalTime, processes[i].burstTime, processes[i].completionTime, processes[i].waitingTime, processes[i].turnAroundTime);
+        printf("%d \t\t %d \t\t %d \t\t %d \t\t %d \t\t\t %d \t\t\t %d\n", processes[i].processId, processes[i].arrivalTime, processes[i].burstTime, processes[i].completionTime, processes[i].waitingTime, processes[i].turnAroundTime, processes[i].responseTime);
     }
     printf("The average Waiting Time is %lf \n", averageWaitingTime);
     printf("The average Turn Around Time is %lf \n", averageTurnAroundTime);
