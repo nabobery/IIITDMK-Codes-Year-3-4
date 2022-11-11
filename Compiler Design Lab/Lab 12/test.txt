@@ -1,0 +1,6 @@
+a = 10
+b = 4 * a 
+c = i * j+b 
+d = 15 * a * c
+e = i 
+c = e * j + i * a
