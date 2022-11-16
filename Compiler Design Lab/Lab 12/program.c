@@ -316,7 +316,8 @@ void value_numbering()
                         tmp += 1;
                         for (int j = 0; j < 10; j++)
                             temp[j] = '\0';
-                        itoa(nameTable[sn].const_value, temp, 10);
+                        // itoa(nameTable[sn].const_value, temp, 10);
+                        sprintf(temp, "%d", nameTable[sn].const_value);
                         for (int j = 0; temp[j] != '\0'; j++)
                         {
                             steps[i][tmp] = temp[j];
@@ -466,7 +467,8 @@ void value_numbering()
                         char s[10];
                         for (int j = 0; j < 10; j++)
                             s[j] = '\0';
-                        itoa(y, s, 10);
+                        // itoa(y, s, 10);
+                        sprintf(s, "%d", y);
                         for (int j = 0; s[j] != '\0'; j++)
                         {
                             steps[i][x++] = s[j];
@@ -484,7 +486,9 @@ void value_numbering()
                         char s[10];
                         for (int j = 0; j < 10; j++)
                             s[j] = '\0';
-                        itoa(y, s, 10);
+                        // itoa(y, s, 10);
+                        // follows C standard
+                        sprintf(s, "%d", y);
                         // printf("%d\n", temp);
                         for (int j = 0; temp[j] != '\0'; j++)
                         {
