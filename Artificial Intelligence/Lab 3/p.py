@@ -7,8 +7,6 @@ visited = []
 costs = []
 
 # dfs function to find the minimum cost of the TSP
-
-
 def dfs(graph, curr, count, cost):
     global n, visited, costs
     # base case to check if all the nodes are visited and the path is complete
@@ -23,8 +21,6 @@ def dfs(graph, curr, count, cost):
             visited[i] = False
 
 # bfs helper function to find total cost of the path
-
-
 def distance(path, graph):
     result = 0
     if(len(path) == 1):
@@ -35,8 +31,6 @@ def distance(path, graph):
     return result
 
 # bfs function to find the minimum cost of the TSP
-
-
 def bfs(graph):
     global n
     min_cost = 10**20
@@ -85,8 +79,6 @@ def ids_helper(graph, curr, count, cost, limit):
             visited[i] = False
 
 # ids function to find the minimum cost of the TSP
-
-
 def ids(graph):
     global n
     for i in range(n):
@@ -104,10 +96,13 @@ def main():
     for i in range(n):
         dist[i] = list(map(int, input().split()))
     visited = [False for i in range(n)]
+    visited[0] = True
     dfs(dist, 0, 1, 0)
     print("The minimum cost of Travelling Salesman Problem using DFS is: " + str(min(costs)))
     bfs(dist)
     costs = []
+    visited = [False for i in range(n)]
+    visited[0] = True
     ids(dist)
     print("The minimum cost of Travelling Salesman Problem using IDS is: " + str(min(costs)))
 
