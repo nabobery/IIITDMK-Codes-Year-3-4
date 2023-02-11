@@ -1,3 +1,10 @@
+# In the TSP,  given a set of cities and the distance between each pair of cities, a salesman needs to choose the shortest path to visit every city exactly once and return to the city from where he started. Here, the nodes represent cities, and the values in each edge denote the distance between one city to another. Here the shortest path means the sum of the distance between each city travelled by the salesman, and it should be less than any other path. Implement A* or DFBB or IDA* algorithm to solve the above problem. 
+
+# The heuristic function is as follows:
+
+# h( n ) = COST OF MINIMUM COST SPANNING TREE OF REMAINING NODES (As discussed in the class)
+
+# Link: https://www.public.asu.edu/~huanliu/AI04S/project1.htm
 # This program is done by CS20B1044 Avinash R Changrani
 import sys
 from queue import PriorityQueue
@@ -163,4 +170,3 @@ if __name__ == "__main__":
 # 0 - A, 1 - B, 2 - C, 3 - D, 4 - E
 
 # Output : 29
-# Reference : https://github.com/FauzanFarooqui/TSP-solver/blob/main/TSP%20A%20star%20MST.ipynb
