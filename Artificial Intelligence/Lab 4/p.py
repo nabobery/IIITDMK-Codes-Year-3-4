@@ -1,10 +1,3 @@
-# In the TSP,  given a set of cities and the distance between each pair of cities, a salesman needs to choose the shortest path to visit every city exactly once and return to the city from where he started. Here, the nodes represent cities, and the values in each edge denote the distance between one city to another. Here the shortest path means the sum of the distance between each city travelled by the salesman, and it should be less than any other path. Implement A* or DFBB or IDA* algorithm to solve the above problem. 
-
-# The heuristic function is as follows:
-
-# h( n ) = COST OF MINIMUM COST SPANNING TREE OF REMAINING NODES (As discussed in the class)
-
-# Link: https://www.public.asu.edu/~huanliu/AI04S/project1.htm
 # This program is done by CS20B1044 Avinash R Changrani
 import sys
 from queue import PriorityQueue
@@ -25,7 +18,7 @@ class Graph:
         self.parent = [-1] * n
         self.mstSet = [False] * n
         self.key[start] = 0
-        self.parent[start] = -1
+        #self.parent[start] = -1
         self.mstweight = 0
 
     # Function to print MST
@@ -41,7 +34,7 @@ class Graph:
     def primMST(self):
         global n
         pq = PriorityQueue()
-        pq.put((0, 0))
+        pq.put((self.key[self.start], self.start))
         # Loop until priority queue is empty
         while not pq.empty():
             # Get the minimum key vertex from priority queue
@@ -61,8 +54,6 @@ class Graph:
         return self.mstweight
 
 # Node class to store the current node, parent node, depth, cost till now and visited nodes
-
-
 class node:
     def __init__(self, currnode, parent, depth, g, visited):
         self.currnode = currnode
@@ -132,13 +123,13 @@ class TSP:
                     if wt != 0 and c not in self.curr.visited:
                         unvisitedGraph = Graph(self.unvisited, c)
                         h = unvisitedGraph.primMST()
+                        #print("c,h: ",c,h)
                         self.childGen(self.curr, c, wt, h)
         return
-
-
+        
 # main function
 def main():
-    global n
+    global n, nodes
     # get the number of nodes
     print("Please enter the number of nodes: ")
     n = int(input())
@@ -154,10 +145,8 @@ def main():
     obj = TSP(dist)
     obj.successor()
 
-
 if __name__ == "__main__":
     main()
-
 
 # Input
 # 5
@@ -170,3 +159,4 @@ if __name__ == "__main__":
 # 0 - A, 1 - B, 2 - C, 3 - D, 4 - E
 
 # Output : 29
+
