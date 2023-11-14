@@ -1,0 +1,10 @@
+int main(){
+int Abcd@7 = 25;
+float B234c$6 = 5.4;
+printf("Hello World");
+string Hello#5 = "Hello!!";
+int Abcde%9[15];printf("%d", Abcde%9[20]);
+Defg&2 = 5;
+Abcd@7 = Hello#5;
+return 0;
+}
